@@ -3,6 +3,11 @@ import { baseCompile } from '@intlify/message-compiler'
 
 import en from '../locales/en'
 import zh from '../locales/zh'
+import ja from '../locales/ja'
+import de from '../locales/de'
+import ko from '../locales/ko'
+import es from '../locales/es'
+import ptBR from '../locales/pt-BR'
 
 // vue-i18n 在运行时才编译消息：文案里未转义的花括号（如内嵌 JSON 示例
 // "{\"user-agent\": ...}"）会在渲染时抛 "Invalid token in placeholder"，
@@ -32,7 +37,12 @@ function collectCompileErrors(node: unknown, path: string, out: string[]): void 
 describe('locale messages compile', () => {
   it.each([
     ['zh', zh],
-    ['en', en]
+    ['en', en],
+    ['ja', ja],
+    ['de', de],
+    ['ko', ko],
+    ['es', es],
+    ['pt-BR', ptBR]
   ] as const)('%s messages all compile without placeholder errors', (locale, messages) => {
     const errors: string[] = []
     collectCompileErrors(messages, locale, errors)

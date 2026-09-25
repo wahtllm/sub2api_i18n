@@ -1,20 +1,37 @@
 import { createI18n } from 'vue-i18n'
 
-type LocaleCode = 'en' | 'zh'
+type LocaleCode = 'en' | 'zh' | 'ja' | 'de' | 'ko' | 'es' | 'pt-BR'
 
 type LocaleMessages = Record<string, any>
 
 const LOCALE_KEY = 'sub2api_locale'
 const DEFAULT_LOCALE: LocaleCode = 'en'
 
+const LOCALE_CODES: readonly LocaleCode[] = ['en', 'zh', 'ja', 'de', 'ko', 'es', 'pt-BR']
+
 const localeLoaders: Record<LocaleCode, () => Promise<{ default: LocaleMessages }>> = {
   en: () => import('./locales/en'),
-  zh: () => import('./locales/zh')
+  zh: () => import('./locales/zh'),
+  ja: () => import('./locales/ja'),
+  de: () => import('./locales/de'),
+  ko: () => import('./locales/ko'),
+  es: () => import('./locales/es'),
+  'pt-BR': () => import('./locales/pt-BR')
 }
 
 function isLocaleCode(value: string): value is LocaleCode {
-  return value === 'en' || value === 'zh'
+  return (LOCALE_CODES as readonly string[]).includes(value)
 }
+
+// 浏览器语言前缀 → 支持的 locale。pt-PT 等其它葡语变体统一回落到巴葡包。
+const browserLocaleMatchers: ReadonlyArray<readonly [prefix: string, locale: LocaleCode]> = [
+  ['zh', 'zh'],
+  ['ja', 'ja'],
+  ['de', 'de'],
+  ['ko', 'ko'],
+  ['es', 'es'],
+  ['pt', 'pt-BR']
+]
 
 function getDefaultLocale(): LocaleCode {
   const saved = localStorage.getItem(LOCALE_KEY)
@@ -23,8 +40,10 @@ function getDefaultLocale(): LocaleCode {
   }
 
   const browserLang = navigator.language.toLowerCase()
-  if (browserLang.startsWith('zh')) {
-    return 'zh'
+  for (const [prefix, locale] of browserLocaleMatchers) {
+    if (browserLang.startsWith(prefix)) {
+      return locale
+    }
   }
 
   return DEFAULT_LOCALE
@@ -93,7 +112,12 @@ export function getLocale(): LocaleCode {
 
 export const availableLocales = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'zh', name: '中文', flag: '🇨🇳' }
+  { code: 'zh', name: '中文', flag: '🇨🇳' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'ko', name: '한국어', flag: '🇰🇷' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'pt-BR', name: 'Português (Brasil)', flag: '🇧🇷' }
 ] as const
 
 export default i18n

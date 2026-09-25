@@ -2,6 +2,21 @@ import { describe, expect, it } from 'vitest'
 
 import en from '../locales/en'
 import zh from '../locales/zh'
+import ja from '../locales/ja'
+import de from '../locales/de'
+import ko from '../locales/ko'
+import es from '../locales/es'
+import ptBR from '../locales/pt-BR'
+
+const allLocales: Record<string, Record<string, unknown>> = {
+  en,
+  zh,
+  ja,
+  de,
+  ko,
+  es,
+  'pt-BR': ptBR
+}
 
 type LocaleValue = Record<string, unknown>
 
@@ -62,16 +77,27 @@ function missingKeys(usedKeys: string[], availableKeys: Set<string>): string[] {
 
 describe('locale key completeness', () => {
   const enKeys = new Set(flattenLeafKeys(en))
-  const zhKeys = new Set(flattenLeafKeys(zh))
   const usedKeys = [...new Set(sourceKeys())].sort()
 
-  it('keeps English and Chinese locale schemas identical', () => {
-    expect([...enKeys].filter((key) => !zhKeys.has(key)).sort()).toEqual([])
-    expect([...zhKeys].filter((key) => !enKeys.has(key)).sort()).toEqual([])
+  it('keeps every locale schema identical to English', () => {
+    for (const [locale, messages] of Object.entries(allLocales)) {
+      if (locale === 'en') {
+        continue
+      }
+      const localeKeys = new Set(flattenLeafKeys(messages))
+      expect(
+        [...enKeys].filter((key) => !localeKeys.has(key)).sort(),
+        `${locale} is missing keys present in English`
+      ).toEqual([])
+      expect(
+        [...localeKeys].filter((key) => !enKeys.has(key)).sort(),
+        `${locale} has keys not present in English`
+      ).toEqual([])
+    }
   })
 
   it('contains a non-empty message for every locale leaf', () => {
-    for (const [locale, messages] of Object.entries({ en, zh })) {
+    for (const [locale, messages] of Object.entries(allLocales)) {
       const emptyKeys = flattenLeafKeys(messages).filter((key) => {
         let current: unknown = messages
         for (const segment of key.split('.')) {
@@ -84,7 +110,11 @@ describe('locale key completeness', () => {
   })
 
   it('contains every statically referenced production key', () => {
-    expect(missingKeys(usedKeys, enKeys), 'English locale is missing referenced keys').toEqual([])
-    expect(missingKeys(usedKeys, zhKeys), 'Chinese locale is missing referenced keys').toEqual([])
+    for (const [locale, messages] of Object.entries(allLocales)) {
+      expect(
+        missingKeys(usedKeys, new Set(flattenLeafKeys(messages))),
+        `${locale} locale is missing referenced keys`
+      ).toEqual([])
+    }
   })
 })
