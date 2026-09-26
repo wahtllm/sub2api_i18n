@@ -6,6 +6,9 @@ services:
     networks:
       - 1panel-network
     environment:
+      # 注意：SERVER_PORT 是容器内部监听端口，必须保持 8080，与下方端口映射
+      # "${PANEL_APP_PORT_HTTP}:8080" 的右侧一致。对外访问端口（默认 8085）
+      # 由安装表单的 PANEL_APP_PORT_HTTP 决定，不要改这里。
       - AUTO_SETUP=true
       - SERVER_HOST=0.0.0.0
       - SERVER_PORT=8080
