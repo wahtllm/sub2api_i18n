@@ -1,21 +1,27 @@
 import { createI18n } from 'vue-i18n'
 
-type LocaleCode = 'en' | 'zh' | 'ja' | 'de' | 'ko' | 'es' | 'pt-BR'
+type LocaleCode = 'en' | 'zh' | 'zh-Hant' | 'ja' | 'de' | 'ko' | 'es' | 'fr' | 'pt-BR'
+
+// 用户可选择的语言偏好：具体语言，或 "system"（每次加载按浏览器语言解析）
+type LocalePreference = LocaleCode | 'system'
 
 type LocaleMessages = Record<string, any>
 
 const LOCALE_KEY = 'sub2api_locale'
+const SYSTEM_LOCALE = 'system'
 const DEFAULT_LOCALE: LocaleCode = 'en'
 
-const LOCALE_CODES: readonly LocaleCode[] = ['en', 'zh', 'ja', 'de', 'ko', 'es', 'pt-BR']
+const LOCALE_CODES: readonly LocaleCode[] = ['en', 'zh', 'zh-Hant', 'ja', 'de', 'ko', 'es', 'fr', 'pt-BR']
 
 const localeLoaders: Record<LocaleCode, () => Promise<{ default: LocaleMessages }>> = {
   en: () => import('./locales/en'),
   zh: () => import('./locales/zh'),
+  'zh-Hant': () => import('./locales/zh-Hant'),
   ja: () => import('./locales/ja'),
   de: () => import('./locales/de'),
   ko: () => import('./locales/ko'),
   es: () => import('./locales/es'),
+  fr: () => import('./locales/fr'),
   'pt-BR': () => import('./locales/pt-BR')
 }
 
@@ -23,15 +29,35 @@ function isLocaleCode(value: string): value is LocaleCode {
   return (LOCALE_CODES as readonly string[]).includes(value)
 }
 
-// 浏览器语言前缀 → 支持的 locale。pt-PT 等其它葡语变体统一回落到巴葡包。
+function isLocalePreference(value: string): value is LocalePreference {
+  return value === SYSTEM_LOCALE || isLocaleCode(value)
+}
+
+// 浏览器语言前缀 → 支持的 locale。繁体变体（zh-TW/HK/MO/Hant）优先于通用 zh 前缀匹配；
+// pt-PT 等其它葡语变体统一回落到巴葡包。
 const browserLocaleMatchers: ReadonlyArray<readonly [prefix: string, locale: LocaleCode]> = [
+  ['zh-hant', 'zh-Hant'],
+  ['zh-tw', 'zh-Hant'],
+  ['zh-hk', 'zh-Hant'],
+  ['zh-mo', 'zh-Hant'],
   ['zh', 'zh'],
   ['ja', 'ja'],
   ['de', 'de'],
   ['ko', 'ko'],
   ['es', 'es'],
+  ['fr', 'fr'],
   ['pt', 'pt-BR']
 ]
+
+function resolveBrowserLocale(): LocaleCode {
+  const browserLang = navigator.language.toLowerCase()
+  for (const [prefix, locale] of browserLocaleMatchers) {
+    if (browserLang.startsWith(prefix)) {
+      return locale
+    }
+  }
+  return DEFAULT_LOCALE
+}
 
 function getDefaultLocale(): LocaleCode {
   const saved = localStorage.getItem(LOCALE_KEY)
@@ -39,14 +65,8 @@ function getDefaultLocale(): LocaleCode {
     return saved
   }
 
-  const browserLang = navigator.language.toLowerCase()
-  for (const [prefix, locale] of browserLocaleMatchers) {
-    if (browserLang.startsWith(prefix)) {
-      return locale
-    }
-  }
-
-  return DEFAULT_LOCALE
+  // 未设置过偏好，或偏好为 system：跟随浏览器语言
+  return resolveBrowserLocale()
 }
 
 export const i18n = createI18n({
@@ -79,14 +99,15 @@ export async function initI18n(): Promise<void> {
 }
 
 export async function setLocale(locale: string): Promise<void> {
-  if (!isLocaleCode(locale)) {
+  if (!isLocalePreference(locale)) {
     return
   }
 
-  await loadLocaleMessages(locale)
-  i18n.global.locale.value = locale
+  const target = locale === SYSTEM_LOCALE ? resolveBrowserLocale() : locale
+  await loadLocaleMessages(target)
+  i18n.global.locale.value = target
   localStorage.setItem(LOCALE_KEY, locale)
-  document.documentElement.setAttribute('lang', locale)
+  document.documentElement.setAttribute('lang', target)
 
   // 同步更新浏览器页签标题，使其跟随语言切换
   const { resolveRouteDocumentTitle } = await import('@/router/title')
@@ -110,14 +131,24 @@ export function getLocale(): LocaleCode {
   return isLocaleCode(current) ? current : DEFAULT_LOCALE
 }
 
+// 当前存储的语言偏好（未设置过视为 system）
+export function getLocalePreference(): LocalePreference {
+  const saved = localStorage.getItem(LOCALE_KEY)
+  return saved && isLocalePreference(saved) ? saved : SYSTEM_LOCALE
+}
+
+// 语言菜单：System 固定第一，其余按本地名 Unicode 序排列
 export const availableLocales = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'zh', name: '中文', flag: '🇨🇳' },
-  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+  { code: 'system', name: 'System', flag: '🌐' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'ko', name: '한국어', flag: '🇰🇷' },
+  { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'pt-BR', name: 'Português (Brasil)', flag: '🇧🇷' }
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'pt-BR', name: 'Português (Brasil)', flag: '🇧🇷' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+  { code: 'zh', name: '简体中文', flag: '🇨🇳' },
+  { code: 'zh-Hant', name: '繁體中文', flag: '🇹🇼' },
+  { code: 'ko', name: '한국어', flag: '🇰🇷' }
 ] as const
 
 export default i18n

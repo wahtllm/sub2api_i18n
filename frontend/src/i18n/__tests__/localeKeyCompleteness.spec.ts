@@ -2,19 +2,23 @@ import { describe, expect, it } from 'vitest'
 
 import en from '../locales/en'
 import zh from '../locales/zh'
+import zhHant from '../locales/zh-Hant'
 import ja from '../locales/ja'
 import de from '../locales/de'
 import ko from '../locales/ko'
 import es from '../locales/es'
+import fr from '../locales/fr'
 import ptBR from '../locales/pt-BR'
 
 const allLocales: Record<string, Record<string, unknown>> = {
   en,
   zh,
+  'zh-Hant': zhHant,
   ja,
   de,
   ko,
   es,
+  fr,
   'pt-BR': ptBR
 }
 
