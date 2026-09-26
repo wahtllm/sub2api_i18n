@@ -1,0 +1,31 @@
+name: Sub2API 多语言版
+tags:
+  - AI
+title: AI API 网关平台（7 语言版），支持订阅配额分发与管理
+description: AI API 网关平台，内置英语、简体中文、日语、德语、韩语、西班牙语、巴西葡语 7 种界面语言
+additionalProperties:
+  key: sub2api-i18n
+  name: Sub2API 多语言版
+  tags:
+    - AI
+  shortDescZh: AI API 网关平台，内置 7 种界面语言（含日语/德语/韩语/西语/巴葡）
+  shortDescEn: AI API gateway platform with 7 built-in UI languages (EN/ZH/JA/DE/KO/ES/PT-BR)
+  description:
+    en: AI API gateway platform for subscription quota distribution and management, with 7 built-in UI languages (English, Simplified Chinese, Japanese, German, Korean, Spanish, Brazilian Portuguese)
+    es-es: Plataforma de puerta de enlace de IA para distribuir y gestionar cuotas de suscripción, con 7 idiomas de interfaz integrados
+    ja: サブスクリプション枠の配布と管理に対応する AI API ゲートウェイプラットフォーム。7 言語の UI を内蔵
+    ko: 구독 할당량 배포 및 관리를 위한 AI API 게이트웨이 플랫폼, 7개 UI 언어 내장
+    pt-br: Plataforma de gateway de API de IA para distribuir e gerenciar cotas de assinatura, com 7 idiomas de interface integrados
+    ru: Платформа AI API-шлюза для распределения и управления квотами подписок со встроенной поддержкой 7 языков интерфейса
+    zh-Hant: AI API 閘道平台，支援訂閱額度分發與管理，內建 7 種介面語言
+    zh: AI API 网关平台，支持订阅配额分发与管理，内置 7 种界面语言（英语/简中/日语/德语/韩语/西语/巴葡）
+  type: website
+  crossVersionUpdate: true
+  limit: 0
+  recommend: 0
+  website: https://github.com/wahtllm/sub2api_i18n
+  github: https://github.com/wahtllm/sub2api_i18n
+  document: https://github.com/wahtllm/sub2api_i18n/blob/main/docs/I18N.md
+  architectures:
+    - amd64
+    - arm64

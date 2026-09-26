@@ -1,7 +1,7 @@
 name: Docker Image
 
-# 私有 fork 专用：每次 push main 或打 tag 时构建多架构镜像并推送到 ghcr.io。
-# 镜像地址: ghcr.io/wahtllm/brushllm_sub2api_i18n
+# sub2api_i18n 公开 fork 专用：每次 push main 或打 tag 时构建多架构镜像并推送到 ghcr.io。
+# 镜像地址: ghcr.io/wahtllm/sub2api_i18n
 # 注意：Dockerfile 的 `pnpm run build` 内含 check:i18n 完整性测试，
 # 任何语言包 key 不同步都会直接让镜像构建失败——这是升级时的质量闸门。
 
@@ -39,6 +39,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Read app version
+        id: version
+        run: echo "version=$(tr -d '[:space:]' < backend/cmd/server/VERSION)" >> "$GITHUB_OUTPUT"
+
       - name: Extract metadata (tags, labels)
         id: meta
         uses: docker/metadata-action@v5
@@ -47,6 +51,7 @@ jobs:
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,prefix=sha-
+            type=raw,value=${{ steps.version.outputs.version }}
             type=ref,event=tag
 
       - name: Build and push
