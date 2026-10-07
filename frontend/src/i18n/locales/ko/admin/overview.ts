@@ -77,7 +77,8 @@ export default {
       groupPricingDesc: '일괄 할인 및 동결 비율 구성',
       systemSettings: '시스템 설정',
       configureSystem: '시스템 설정 구성',
-      failedToLoad: '대시보드 통계를 불러오지 못했습니다'
+      failedToLoad: '대시보드 통계를 불러오지 못했습니다',
+      actualSpending: '실제 소비액 ($)',
     },
 
     backup: {
@@ -1045,6 +1046,7 @@ export default {
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
         composite: 'Composite',
+        typesafe: 'TypeSafe / Jev',
       },
       deleteConfirm:
         "'{name}' 그룹을 삭제하시겠습니까? 연결된 모든 API 키가 더 이상 어떤 그룹에도 속하지 않게 됩니다.",
@@ -1143,19 +1145,18 @@ export default {
       },
       modelAllowlist: {
         title: '모델 허용 목록',
-        hint: '활성화하면 허용 목록에 없는 모델은 404 model_not_found로 거부되며, 모델 목록 엔드포인트도 허용 목록에 있는 모델만 표시합니다. 항목은 정확한 모델 ID와 끝에 붙는 * 와일드카드를 지원합니다. 참고: Claude Code는 제목/요약 생성에 haiku 계열 모델을 사용하고 /messages/count_tokens도 허용 목록의 적용을 받으므로, 필요한 소형 모델도 함께 선택했는지 확인하세요.',
+        hint: '활성화하면 허용 목록에 없는 모델은 404 model_not_found로 거부되며, 모델 목록 엔드포인트도 허용 목록에 있는 모델만 표시합니다. 항목은 정확한 모델 ID 또는 어느 위치에나 * 와일드카드를 포함할 수 있습니다(예: gpt-*-codex). 참고: Claude Code는 제목/요약 생성을 위해 haiku 계열 모델을 프로브하며 /messages/count_tokens도 허용 목록의 적용을 받으므로, 필요한 소형 모델도 함께 선택하세요.',
         loading: '후보 모델을 불러오는 중...',
         empty: '후보 모델이 없습니다. 아래에서 사용자 지정 항목을 추가하세요',
         selectedSummary: '{selected} / {total} 선택됨',
         selectAll: '전체 선택',
         invertSelection: '선택 반전',
         wildcardTag: '와일드카드',
-        customPlaceholder: '사용자 지정 항목, 예: claude-* 또는 gpt-5.5-codex',
+        customPlaceholder: '사용자 지정 항목, 예: gpt-*-codex 또는 claude-*',
         addCustom: '추가',
         emptySelectionError: '모델 허용 목록이 활성화되어 있습니다. 모델 항목을 하나 이상 선택하거나 추가하세요',
         errors: {
           empty: '모델 항목을 입력하세요',
-          invalidWildcard: '와일드카드 *는 항목 끝에만 사용할 수 있습니다',
           duplicate: '이 항목은 이미 존재합니다'
         }
       },

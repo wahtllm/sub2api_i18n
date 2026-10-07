@@ -34,6 +34,9 @@ env:
 
 jobs:
   prepare:
+    # 仅官方仓库执行完整发布（fork 推 tag/手动触发时直接跳过，防止误发
+    # ghcr.io/<owner>/sub2api 与 GitHub Release）
+    if: ${{ github.repository == 'Wei-Shaw/sub2api' }}
     runs-on: ubuntu-latest
     outputs:
       sha: ${{ steps.plan.outputs.sha }}

@@ -109,6 +109,7 @@ export default {
         deepseek: 'DeepSeek',
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
+        typesafe: 'TypeSafe / Jev',
       },
       cnProviders: {
         accountMode: {
@@ -842,7 +843,7 @@ export default {
       customErrorCodes: 'Eigene Fehlercodes',
       customErrorCodesHint: 'Scheduling nur für ausgewählte Fehlercodes stoppen',
       customErrorCodesWarning:
-        'Nur ausgewählte Fehlercodes stoppen das Scheduling. Andere Fehler geben 500 zurück.',
+        'Benutzerdefinierte Fehlercodes filtern nur die normale Fehlerbehandlung für Konten (wie Stoppen der Planung oder Markieren von Ratenlimits). Sie entscheiden nicht, ob eine Anfrage erneut versucht oder zu einem anderen Konto gewechselt wird. Nicht ausgewählte Fehler können dennoch einen erneuten Versuch oder Kontowechsel auslösen, und der an den Client zurückgegebene Status hängt vom Gateway-Pfad und den Fehler-Durchreichungsregeln ab; es wird nicht immer 500 zurückgegeben. Eine leere Liste wendet keine Filterung an.',
       customErrorCodes429Warning:
         '429 hat bereits eine eingebaute Rate-Limit-Behandlung. Das Hinzufügen zu den eigenen Fehlercodes deaktiviert das Konto statt es temporär zu limitieren. Bist du sicher?',
       customErrorCodes529Warning:
@@ -1692,7 +1693,54 @@ export default {
       linkCopied: 'Link kopiert',
       needsReauth: 'Erneute Autorisierung erforderlich',
       rateLimited: 'Rate-limitiert',
-      usageError: 'Abruf-Fehler'
+      usageError: 'Abruf-Fehler',
+      priorityQuick: {
+        raise: 'Priorität erhöhen (Wert -1)',
+        lower: 'Priorität senken (Wert +1)',
+        editHint: 'Klicke, um einen Wert einzugeben; niedrigere Werte werden zuerst verwendet',
+        failed: 'Priorität konnte nicht aktualisiert werden',
+      },
+      modelMappingConflict: 'Es existiert bereits eine Zuordnung für {from} → {to}. Ändere oder entferne sie unter Modell-Zuordnung, bevor du dieses Whitelist-Modell hinzufügst',
+      claudeResetCredits: {
+        count: 'Zurücksetzungen',
+        countTooltipLoad: 'Verbleibende Claude-Zurücksetzungen prüfen (nur lesend, verbraucht keine)',
+        countTooltipRefresh: 'Verbleibende Claude-Zurücksetzungen aktualisieren (nur lesend, verbraucht keine)',
+        fetched: 'Geprüft am {time}',
+        error: 'Zurücksetzungs-Guthaben konnte nicht geprüft werden',
+        ineligible: 'Dieses Konto kann derzeit keine Zurücksetzungen nutzen',
+        cooldown: 'Abklingzeit bis {time}',
+        expiresAt: 'Läuft ab {time}',
+        expiresAtFull: 'Zurücksetzungs-Guthaben läuft ab am: {time}',
+        clears: 'Löscht Zeitfenster: {windows}',
+        notUsableNow: 'Derzeit nicht nutzbar',
+        requiresLimit: 'Nur nutzbar nach Erreichen eines Limits',
+        reset: 'Zurücksetzen',
+        resetTooltipNeedQuery: 'Prüfe zuerst die Anzahl; Zurücksetzen ist verfügbar, sobald nutzbares Guthaben gefunden wurde',
+        resetTooltipNone: 'Derzeit kann keine Zurücksetzung verwendet werden',
+        resetTooltipReady: '1 Zurücksetzung verbrauchen, um Limit-Zeitfenster zu löschen (erfordert Bestätigung)',
+        confirmTitle: 'Claude-Zurücksetzung bestätigen',
+        confirmMessage: 'Dies verbraucht 1 Zurücksetzungs-Guthaben, um das/die {windows}-Zeitfenster sofort wiederherzustellen ({count} verbleibend). Diese Aktion kann nicht rückgängig gemacht werden. Fortfahren?',
+        windows: {
+          fiveHour: '5h',
+          sevenDay: '7d',
+          sevenDayOverage: '7d Überschreitung',
+        },
+        outcome: {
+          reset: 'Zurücksetzung angewendet; gelöscht: {windows}',
+          alreadyUsed: 'Diese Zurücksetzung wurde bereits verwendet; aktualisiere zur Bestätigung',
+          cooldown: 'Zurücksetzungen befinden sich in Abklingzeit; versuche es später erneut',
+          cooldownUntil: 'Zurücksetzungen befinden sich in Abklingzeit bis {time}',
+          notLimited: 'Kein Limit erreicht, daher wurde nichts zurückgesetzt und kein Guthaben verbraucht',
+          ineligible: 'Dieses Konto kann derzeit keine Zurücksetzungen nutzen',
+          unknown: 'Ergebnis nicht bestätigt; weitere Einlösungen sind vorerst blockiert. Prüfe später erneut',
+          unavailable: 'Zurücksetzungs-Service ist vorübergehend nicht verfügbar; versuche es nach einer Weile erneut',
+          inProgress: 'Diese Zurücksetzungsanfrage wird noch verarbeitet; prüfe in Kürze erneut',
+          retryBackoff: 'Diese Zurücksetzungsanfrage ist gerade fehlgeschlagen; versuche es nach einem Moment erneut',
+          busy: 'Eine andere Zurücksetzung läuft gerade; versuche es später erneut',
+          notAvailable: 'Derzeit kann keine Zurücksetzung verwendet werden; kein Guthaben verbraucht',
+          failed: 'Zurücksetzungsanfrage fehlgeschlagen',
+        },
+      },
     },
 
     // Scheduled Tests

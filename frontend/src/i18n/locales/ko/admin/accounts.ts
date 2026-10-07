@@ -109,6 +109,7 @@ export default {
         deepseek: 'DeepSeek',
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
+        typesafe: 'TypeSafe / Jev',
       },
       cnProviders: {
         accountMode: {
@@ -842,7 +843,7 @@ export default {
       customErrorCodes: '사용자 지정 오류 코드',
       customErrorCodesHint: '선택한 오류 코드에만 스케줄링을 중지합니다',
       customErrorCodesWarning:
-        '선택한 오류 코드만 스케줄링을 중지합니다. 다른 오류는 500을 반환합니다.',
+        '사용자 지정 오류 코드는 일반적인 계정 오류 처리(예: 스케줄링 중지나 요청 제한 표시)를 필터링할 뿐, 요청의 재시도 또는 다른 계정으로의 전환 여부를 결정하지 않습니다. 선택하지 않은 오류도 재시도나 계정 전환을 유발할 수 있으며, 클라이언트에 반환되는 상태 코드는 게이트웨이 경로와 오류 패스스루 규칙에 따라 달라 항상 500인 것은 아닙니다. 목록을 비우면 필터링하지 않습니다.',
       customErrorCodes429Warning:
         '429에는 이미 내장된 요청 제한 처리가 있습니다. 사용자 지정 오류 코드에 추가하면 임시 요청 제한 대신 계정이 비활성화됩니다. 확실합니까?',
       customErrorCodes529Warning:
@@ -1692,7 +1693,54 @@ export default {
       linkCopied: '링크가 복사되었습니다',
       needsReauth: '재인증 필요',
       rateLimited: '요청 제한됨',
-      usageError: '가져오기 오류'
+      usageError: '가져오기 오류',
+      priorityQuick: {
+        raise: '우선순위 높이기(값 -1)',
+        lower: '우선순위 낮추기(값 +1)',
+        editHint: '클릭하여 값을 직접 입력하세요. 값이 작을수록 먼저 사용됩니다',
+        failed: '우선순위를 업데이트하지 못했습니다',
+      },
+      modelMappingConflict: '{from} → {to} 모델 매핑이 이미 존재합니다. 이 모델을 화이트리스트에 추가하기 전에 모델 매핑에서 해당 항목을 수정하거나 삭제하세요',
+      claudeResetCredits: {
+        count: '횟수',
+        countTooltipLoad: '남은 Claude 초기화 크레딧을 조회합니다(읽기 전용, 소모되지 않음)',
+        countTooltipRefresh: '남은 Claude 초기화 크레딧을 새로고침합니다(읽기 전용, 소모되지 않음)',
+        fetched: '조회 시간: {time}',
+        error: '초기화 크레딧을 조회하지 못했습니다',
+        ineligible: '이 계정은 현재 초기화 크레딧을 사용할 수 없습니다',
+        cooldown: '{time}까지 쿨다운',
+        expiresAt: '{time}에 만료',
+        expiresAtFull: '초기화 크레딧 만료 시간: {time}',
+        clears: '초기화 가능한 시간 윈도우: {windows}',
+        notUsableNow: '현재 사용 불가',
+        requiresLimit: '한도에 도달한 후에만 사용할 수 있습니다',
+        reset: '초기화',
+        resetTooltipNeedQuery: '먼저 횟수를 눌러 조회하세요. 사용 가능한 초기화 크레딧이 확인되면 초기화할 수 있습니다',
+        resetTooltipNone: '지금 사용할 수 있는 초기화 크레딧이 없습니다',
+        resetTooltipReady: '초기화 크레딧 1개를 사용하여 한도 윈도우를 초기화합니다(확인 필요)',
+        confirmTitle: 'Claude 초기화 확인',
+        confirmMessage: '초기화 크레딧 1개를 사용하여 {windows} 윈도우를 즉시 복구합니다(남은 횟수 {count}). 이 작업은 되돌릴 수 없습니다. 계속하시겠습니까?',
+        windows: {
+          fiveHour: '5h',
+          sevenDay: '7d',
+          sevenDayOverage: '7d 초과분',
+        },
+        outcome: {
+          reset: '초기화가 적용되었습니다. 초기화된 윈도우: {windows}',
+          alreadyUsed: '이 초기화 크레딧은 이미 사용되었습니다. 확인을 위해 새로고침합니다',
+          cooldown: '초기화가 쿨다운 중입니다. 나중에 다시 시도하세요',
+          cooldownUntil: '초기화가 {time}까지 쿨다운 중입니다',
+          notLimited: '현재 한도에 도달하지 않아 초기화하지 않았으며 크레딧도 사용하지 않았습니다',
+          ineligible: '이 계정은 현재 초기화 크레딧을 사용할 수 없습니다',
+          unknown: '결과를 확인할 수 없어 추가 사용이 일시적으로 차단되었습니다. 나중에 다시 조회하세요',
+          unavailable: '초기화 서비스를 일시적으로 사용할 수 없습니다. 잠시 후 다시 시도하세요',
+          inProgress: '이 초기화 요청은 아직 처리 중입니다. 잠시 후 다시 확인하세요',
+          retryBackoff: '이 초기화 요청이 방금 실패했습니다. 잠시 후 다시 시도하세요',
+          busy: '다른 초기화가 진행 중입니다. 나중에 다시 시도하세요',
+          notAvailable: '지금 사용할 수 있는 초기화 크레딧이 없어 크레딧을 사용하지 않았습니다',
+          failed: '초기화 요청에 실패했습니다',
+        },
+      },
     },
 
     // Scheduled Tests

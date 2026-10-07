@@ -368,6 +368,8 @@ export default {
       orderType: 'Tipo de pedido',
       actions: 'Ações',
       requestRefund: 'Solicitar reembolso',
+      bonusAmount: 'Bônus',
+      bonusIncluded: 'incl. bônus de {amount}',
     },
     result: {
       success: 'Pagamento efetuado com sucesso',
@@ -618,6 +620,13 @@ export default {
         expired: 'Expirada',
         revoked: 'Revogada',
       },
+    },
+    rechargeBonus: {
+      creditedShort: 'Receba {amount}',
+      payShort: 'Pague {amount}',
+      amountLabel: 'Bônus',
+      amountLabelWithPercent: 'Bônus (+{percent}%)',
+      discountLabelWithPercent: 'Desconto ({percent}% OFF)',
     },
   },
 

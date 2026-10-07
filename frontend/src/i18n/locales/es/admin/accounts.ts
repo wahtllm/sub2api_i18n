@@ -109,6 +109,7 @@ export default {
         deepseek: 'DeepSeek',
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
+        typesafe: 'TypeSafe / Jev',
       },
       cnProviders: {
         accountMode: {
@@ -842,7 +843,7 @@ export default {
       customErrorCodes: 'Códigos de error personalizados',
       customErrorCodesHint: 'Solo detiene la programación para los códigos de error seleccionados',
       customErrorCodesWarning:
-        'Solo los códigos de error seleccionados detendrán la programación. Otros errores devolverán 500.',
+        'Los códigos de error personalizados solo filtran el manejo normal de errores de cuenta (como detener la planificación o marcar límites de tasa). No deciden si una solicitud se reintenta o se cambia a otra cuenta. Los errores no seleccionados pueden seguir provocando un reintento o un cambio de cuenta, y el estado devuelto al cliente depende de la ruta de la pasarela y de las reglas de paso de errores; no siempre es 500. Una lista vacía no aplica ningún filtro.',
       customErrorCodes429Warning:
         '429 ya tiene gestión de límite de tasa integrada. Añadirlo a los códigos de error personalizados desactivará la cuenta en lugar de aplicar un límite de tasa temporal. ¿Seguro que quieres añadirlo?',
       customErrorCodes529Warning:
@@ -1692,7 +1693,54 @@ export default {
       linkCopied: 'Enlace copiado',
       needsReauth: 'Reautorización requerida',
       rateLimited: 'Con límite de tasa',
-      usageError: 'Error al obtener'
+      usageError: 'Error al obtener',
+      priorityQuick: {
+        raise: 'Subir prioridad (valor -1)',
+        lower: 'Bajar prioridad (valor +1)',
+        editHint: 'Haz clic para escribir un valor; el menor se usa primero',
+        failed: 'No se pudo actualizar la prioridad',
+      },
+      modelMappingConflict: 'Ya existe una asignación para {from} → {to}. Modifícala o elimínala en Asignación de modelos antes de añadir este modelo a la lista permitida',
+      claudeResetCredits: {
+        count: 'Restablecimientos',
+        countTooltipLoad: 'Consultar los restablecimientos restantes de Claude (solo lectura, nunca consume uno)',
+        countTooltipRefresh: 'Actualizar los restablecimientos restantes de Claude (solo lectura, nunca consume uno)',
+        fetched: 'Consultado a las {time}',
+        error: 'No se pudieron consultar los restablecimientos',
+        ineligible: 'Esta cuenta no puede usar restablecimientos ahora mismo',
+        cooldown: 'Enfriamiento hasta {time}',
+        expiresAt: 'Caduca {time}',
+        expiresAtFull: 'El crédito de restablecimiento caduca a las: {time}',
+        clears: 'Borra las ventanas: {windows}',
+        notUsableNow: 'No disponible ahora',
+        requiresLimit: 'Solo se puede usar tras alcanzar un límite',
+        reset: 'Restablecer',
+        resetTooltipNeedQuery: 'Consulta primero el contador; el restablecimiento estará disponible cuando se encuentre un crédito utilizable',
+        resetTooltipNone: 'No hay ningún restablecimiento que se pueda usar ahora mismo',
+        resetTooltipReady: 'Consume 1 restablecimiento para borrar las ventanas de límite (pide confirmación)',
+        confirmTitle: 'Confirmar restablecimiento de Claude',
+        confirmMessage: 'Esto consumirá 1 crédito de restablecimiento para restaurar de inmediato la(s) ventana(s) {windows} ({count} restantes). Esta acción no se puede deshacer. ¿Continuar?',
+        windows: {
+          fiveHour: '5h',
+          sevenDay: '7d',
+          sevenDayOverage: 'exceso de 7d',
+        },
+        outcome: {
+          reset: 'Restablecimiento aplicado; borrado: {windows}',
+          alreadyUsed: 'Este restablecimiento ya se usó; actualizando para confirmar',
+          cooldown: 'Los restablecimientos están en enfriamiento; inténtalo más tarde',
+          cooldownUntil: 'Los restablecimientos están en enfriamiento hasta {time}',
+          notLimited: 'No está en un límite, así que no se restableció nada ni se consumió crédito',
+          ineligible: 'Esta cuenta no puede usar restablecimientos ahora mismo',
+          unknown: 'Resultado sin confirmar; se bloqueó temporalmente seguir canjeando. Vuelve a consultar más tarde',
+          unavailable: 'El servicio de restablecimiento no está disponible temporalmente; reinténtalo en un rato',
+          inProgress: 'Esta solicitud de restablecimiento sigue procesándose; consulta de nuevo en breve',
+          retryBackoff: 'Esta solicitud de restablecimiento acaba de fallar; reinténtalo en un momento',
+          busy: 'Hay otro restablecimiento en curso; inténtalo más tarde',
+          notAvailable: 'No hay ningún restablecimiento utilizable ahora mismo; no se consumió crédito',
+          failed: 'La solicitud de restablecimiento falló',
+        },
+      },
     },
 
     // Pruebas programadas

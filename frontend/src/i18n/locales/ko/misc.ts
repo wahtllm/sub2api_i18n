@@ -368,6 +368,8 @@ export default {
       orderType: '주문 유형',
       actions: '작업',
       requestRefund: '환불 요청',
+      bonusAmount: '추가 잔액',
+      bonusIncluded: '추가 잔액 {amount} 포함',
     },
     result: {
       success: '결제 완료',
@@ -618,6 +620,13 @@ export default {
         expired: '만료됨',
         revoked: '해지됨',
       },
+    },
+    rechargeBonus: {
+      creditedShort: '입금액 {amount}',
+      payShort: '실결제 {amount}',
+      amountLabel: '추가 잔액',
+      amountLabelWithPercent: '추가 잔액 (+{percent}%)',
+      discountLabelWithPercent: '할인 ({percent}% OFF)',
     },
   },
 

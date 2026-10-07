@@ -77,7 +77,8 @@ export default {
       groupPricingDesc: '一括割引と保留比率を設定します',
       systemSettings: 'システム設定',
       configureSystem: 'システム設定を構成します',
-      failedToLoad: 'ダッシュボード統計の読み込みに失敗しました'
+      failedToLoad: 'ダッシュボード統計の読み込みに失敗しました',
+      actualSpending: '実際の消費額（$）',
     },
 
     backup: {
@@ -1045,6 +1046,7 @@ export default {
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
         composite: 'Composite',
+        typesafe: 'TypeSafe / Jev',
       },
       deleteConfirm:
         "'{name}' を削除してもよろしいですか？関連するすべての API キーがどのグループにも属さなくなります。",
@@ -1143,19 +1145,18 @@ export default {
       },
       modelAllowlist: {
         title: 'モデル許可リスト',
-        hint: '有効にすると、許可リストに含まれないモデルは 404 model_not_found で拒否され、モデル一覧エンドポイントには許可リスト内のモデルのみ表示されます。エントリは完全一致のモデル ID と末尾の * ワイルドカードをサポートします。注意：Claude Code はタイトル/要約などのプローブに haiku 系の小モデルを使用し、/messages/count_tokens も許可リストの制御対象です。必要な小モデルも必ずあわせて選択してください。',
+        hint: '有効にすると、許可リストに含まれないモデルは 404 model_not_found で拒否され、モデル一覧エンドポイントには許可リスト内のモデルのみ表示されます。エントリは完全一致のモデル ID と任意の位置の * ワイルドカード（例：gpt-*-codex）をサポートします。注意：Claude Code はタイトルや要約などのプローブに haiku 系の小モデルを使用し、/messages/count_tokens も許可リストの制御対象です。必要な小モデルも必ずあわせて選択してください。',
         loading: '候補モデルを読み込み中...',
         empty: '候補モデルがありません。下でカスタムエントリを追加してください',
         selectedSummary: '選択済み {selected} / {total}',
         selectAll: 'すべて選択',
         invertSelection: '選択を反転',
         wildcardTag: 'ワイルドカード',
-        customPlaceholder: 'カスタムエントリ。例：claude-* または gpt-5.5-codex',
+        customPlaceholder: 'カスタムエントリ。例：gpt-*-codex または claude-*',
         addCustom: '追加',
         emptySelectionError: 'モデル許可リストが有効です。少なくとも 1 つのモデルエントリを選択または追加してください',
         errors: {
           empty: 'モデルエントリを入力してください',
-          invalidWildcard: 'ワイルドカード * はエントリの末尾にのみ使用できます',
           duplicate: 'このエントリはすでに存在します'
         }
       },

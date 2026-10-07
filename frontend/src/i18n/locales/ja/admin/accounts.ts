@@ -109,6 +109,7 @@ export default {
         deepseek: 'DeepSeek',
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
+        typesafe: 'TypeSafe / Jev',
       },
       cnProviders: {
         accountMode: {
@@ -842,7 +843,7 @@ export default {
       customErrorCodes: 'カスタムエラーコード',
       customErrorCodesHint: '選択したエラーコードのみスケジューリングを停止します',
       customErrorCodesWarning:
-        '選択したエラーコードのみがスケジューリングを停止します。その他のエラーは 500 を返します。',
+        'カスタムエラーコードは、スケジューリングの停止やレート制限のマークなど、通常のアカウントエラー処理の絞り込みにのみ使用されます。リクエストを再試行するか、別のアカウントに切り替えるかは決定しません。選択されていないエラーでも再試行やアカウント切り替えが発生する場合があります。クライアントに返されるステータスコードはゲートウェイの経路とエラーのパススルールールによって異なり、常に 500 とは限りません。リストが空の場合は絞り込みを行いません。',
       customErrorCodes429Warning:
         '429 には既に内蔵のレート制限処理があります。カスタムエラーコードに追加すると、一時的なレート制限ではなくアカウントが無効化されます。よろしいですか？',
       customErrorCodes529Warning:
@@ -1692,7 +1693,54 @@ export default {
       linkCopied: 'リンクをコピーしました',
       needsReauth: '再認可が必要',
       rateLimited: 'レート制限中',
-      usageError: '取得エラー'
+      usageError: '取得エラー',
+      priorityQuick: {
+        raise: '優先度を上げる（値 -1）',
+        lower: '優先度を下げる（値 +1）',
+        editHint: 'クリックして数値を入力します。小さい値が先に使用されます',
+        failed: '優先度の更新に失敗しました',
+      },
+      modelMappingConflict: '{from} → {to} のマッピングはすでに存在します。このモデルをホワイトリストに追加する前に、モデルマッピングで変更または削除してください',
+      claudeResetCredits: {
+        count: 'リセット回数',
+        countTooltipLoad: 'Claude の残りリセット回数を確認します（読み取り専用で、回数は消費しません）',
+        countTooltipRefresh: 'Claude の残りリセット回数を更新します（読み取り専用で、回数は消費しません）',
+        fetched: '確認日時：{time}',
+        error: 'リセットクレジットを確認できませんでした',
+        ineligible: 'このアカウントでは現在リセットを利用できません',
+        cooldown: '{time} までクールダウン中',
+        expiresAt: '有効期限：{time}',
+        expiresAtFull: 'リセットクレジットの有効期限：{time}',
+        clears: 'クリアできる時間ウィンドウ：{windows}',
+        notUsableNow: '現在は利用できません',
+        requiresLimit: '上限に達した後にのみ利用できます',
+        reset: 'リセット',
+        resetTooltipNeedQuery: '先に残り回数を確認してください。利用可能なクレジットが見つかるとリセットできます',
+        resetTooltipNone: '現在利用できるリセットはありません',
+        resetTooltipReady: 'リセットを 1 回分消費して制限ウィンドウをクリアします（確認が必要です）',
+        confirmTitle: 'Claude のリセットを確認',
+        confirmMessage: 'リセットクレジットを 1 回分消費して、{windows} の制限ウィンドウをただちに復元します（残り {count} 回）。この操作は取り消せません。続行しますか？',
+        windows: {
+          fiveHour: '5h',
+          sevenDay: '7d',
+          sevenDayOverage: '7d 超過分',
+        },
+        outcome: {
+          reset: 'リセットが適用され、{windows} をクリアしました',
+          alreadyUsed: 'このリセットはすでに使用されています。更新して確認します',
+          cooldown: 'リセットはクールダウン中です。しばらくしてから再試行してください',
+          cooldownUntil: 'リセットは {time} までクールダウン中です',
+          notLimited: '現在は上限に達していないため、リセットは行われず、クレジットも消費されませんでした',
+          ineligible: 'このアカウントでは現在リセットを利用できません',
+          unknown: '結果を確認できないため、再度のクレジット使用を一時的にブロックしています。後ほど確認してください',
+          unavailable: 'リセットサービスは一時的に利用できません。しばらくしてから再試行してください',
+          inProgress: 'このリセットリクエストは処理中です。しばらくしてから結果を確認してください',
+          retryBackoff: 'このリセットリクエストは直前に失敗しました。しばらくしてから再試行してください',
+          busy: '別のリセットを処理中です。しばらくしてから再試行してください',
+          notAvailable: '現在利用できるリセットはありません。クレジットは消費されませんでした',
+          failed: 'リセットリクエストに失敗しました',
+        },
+      },
     },
 
     // Scheduled Tests

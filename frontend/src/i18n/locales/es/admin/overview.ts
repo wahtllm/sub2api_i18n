@@ -77,7 +77,8 @@ export default {
       groupPricingDesc: 'Configurar el descuento por lotes y la proporción de retención',
       systemSettings: 'Ajustes del sistema',
       configureSystem: 'Configurar los ajustes del sistema',
-      failedToLoad: 'No se pudieron cargar las estadísticas del panel'
+      failedToLoad: 'No se pudieron cargar las estadísticas del panel',
+      actualSpending: 'Gasto real ($)',
     },
 
     backup: {
@@ -1045,6 +1046,7 @@ export default {
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
         composite: 'Composite',
+        typesafe: 'TypeSafe / Jev',
       },
       deleteConfirm:
         "¿Seguro que quieres eliminar '{name}'? Todas las claves de API asociadas dejarán de pertenecer a cualquier grupo.",
@@ -1143,19 +1145,18 @@ export default {
       },
       modelAllowlist: {
         title: 'Lista de modelos permitidos',
-        hint: 'Al activarlo, los modelos fuera de la lista se rechazan con 404 model_not_found, y los endpoints de listado de modelos solo muestran los modelos de la lista. Las entradas admiten ID de modelos exactos y comodines * al final. Nota: Claude Code sondea con modelos de la familia haiku para títulos/resúmenes y /messages/count_tokens también está controlado por la lista, así que asegúrate de seleccionar también los modelos pequeños que necesites.',
+        hint: 'Al activarla, los modelos fuera de la lista permitida se rechazan con 404 model_not_found, y los endpoints de listado de modelos solo muestran los modelos permitidos. Las entradas admiten IDs de modelo exactos y comodines * en cualquier posición (p. ej., gpt-*-codex). Nota: Claude Code sondea con modelos de la familia haiku para títulos/resúmenes, y /messages/count_tokens también está controlado por la lista permitida, así que asegúrate de seleccionar también los modelos pequeños que necesites.',
         loading: 'Cargando modelos candidatos...',
         empty: 'No hay modelos candidatos; añade entradas personalizadas abajo',
         selectedSummary: 'Seleccionados: {selected} / {total}',
         selectAll: 'Seleccionar todo',
         invertSelection: 'Invertir',
         wildcardTag: 'comodín',
-        customPlaceholder: 'Entrada personalizada, p. ej. claude-* o gpt-5.5-codex',
+        customPlaceholder: 'Entrada personalizada, p. ej. gpt-*-codex o claude-*',
         addCustom: 'Añadir',
         emptySelectionError: 'La lista de modelos permitidos está activada; selecciona o añade al menos una entrada de modelo',
         errors: {
           empty: 'Introduce una entrada de modelo',
-          invalidWildcard: 'El comodín * solo se permite al final de una entrada',
           duplicate: 'Esta entrada ya existe'
         }
       },

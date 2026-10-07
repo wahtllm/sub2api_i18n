@@ -368,6 +368,8 @@ export default {
       orderType: '注文タイプ',
       actions: '操作',
       requestRefund: '返金を申請',
+      bonusAmount: 'ボーナス額',
+      bonusIncluded: 'ボーナス {amount} を含む',
     },
     result: {
       success: '支払いが完了しました',
@@ -618,6 +620,13 @@ export default {
         expired: '期限切れ',
         revoked: '失効',
       },
+    },
+    rechargeBonus: {
+      creditedShort: 'チャージ後 {amount}',
+      payShort: '支払額 {amount}',
+      amountLabel: 'ボーナス額',
+      amountLabelWithPercent: 'ボーナス額（+{percent}%）',
+      discountLabelWithPercent: '割引（{percent}% OFF）',
     },
   },
 

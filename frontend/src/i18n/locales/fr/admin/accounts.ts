@@ -109,6 +109,7 @@ export default {
         deepseek: 'DeepSeek',
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
+        typesafe: 'TypeSafe / Jev',
       },
       cnProviders: {
         accountMode: {
@@ -842,7 +843,7 @@ export default {
       customErrorCodes: 'Codes d\'erreur personnalisés',
       customErrorCodesHint: 'Arrête l\'ordonnancement uniquement pour les codes d\'erreur sélectionnés',
       customErrorCodesWarning:
-        'Seuls les codes d\'erreur sélectionnés arrêteront l\'ordonnancement. Les autres erreurs renverront 500.',
+        'Les codes d\'erreur personnalisés ne filtrent que la gestion normale des erreurs de compte (comme l\'arrêt de l\'ordonnancement ou le marquage des limites de débit). Ils ne déterminent pas si une requête est retentée ou basculée vers un autre compte. Les erreurs non sélectionnées peuvent toujours déclencher une nouvelle tentative ou un changement de compte, et le code de statut renvoyé au client dépend du chemin de la passerelle et des règles de transmission des erreurs ; ce n\'est pas toujours 500. Une liste vide n\'applique aucun filtrage.',
       customErrorCodes429Warning:
         'Le 429 bénéficie déjà d\'un traitement intégré des limites de débit. L\'ajouter aux codes d\'erreur personnalisés désactivera le compte au lieu d\'une limite de débit temporaire. Confirmer ?',
       customErrorCodes529Warning:
@@ -1692,7 +1693,54 @@ export default {
       linkCopied: 'Lien copié',
       needsReauth: 'Réautorisation requise',
       rateLimited: 'Limité en débit',
-      usageError: 'Erreur de récupération'
+      usageError: 'Erreur de récupération',
+      priorityQuick: {
+        raise: 'Augmenter la priorité (valeur -1)',
+        lower: 'Diminuer la priorité (valeur +1)',
+        editHint: 'Cliquez pour saisir une valeur ; les valeurs basses sont utilisées en premier',
+        failed: 'Échec de la mise à jour de la priorité',
+      },
+      modelMappingConflict: 'Un mappage existe déjà pour {from} → {to}. Modifiez-le ou supprimez-le dans Mappage de modèles avant d\'ajouter ce modèle à la liste blanche',
+      claudeResetCredits: {
+        count: 'Réinitialisations',
+        countTooltipLoad: 'Vérifier les réinitialisations Claude restantes (lecture seule, n\'en consomme jamais)',
+        countTooltipRefresh: 'Actualiser les réinitialisations Claude restantes (lecture seule, n\'en consomme jamais)',
+        fetched: 'Vérifié à {time}',
+        error: 'Impossible de vérifier les crédits de réinitialisation',
+        ineligible: 'Ce compte ne peut pas utiliser les réinitialisations pour le moment',
+        cooldown: 'Refroidissement jusqu\'à {time}',
+        expiresAt: 'Expire {time}',
+        expiresAtFull: 'Le crédit de réinitialisation expire le : {time}',
+        clears: 'Efface les fenêtres : {windows}',
+        notUsableNow: 'Non utilisable actuellement',
+        requiresLimit: 'Utilisable uniquement après avoir atteint une limite',
+        reset: 'Réinitialiser',
+        resetTooltipNeedQuery: 'Vérifiez d\'abord le nombre ; la réinitialisation est disponible une fois qu\'un crédit utilisable est trouvé',
+        resetTooltipNone: 'Aucune réinitialisation ne peut être utilisée pour le moment',
+        resetTooltipReady: 'Consommer 1 réinitialisation pour effacer les fenêtres de limite (demande confirmation)',
+        confirmTitle: 'Confirmer la réinitialisation Claude',
+        confirmMessage: 'Cela consommera 1 crédit de réinitialisation pour restaurer immédiatement la ou les fenêtre(s) {windows} ({count} restants). Cette action ne peut pas être annulée. Continuer ?',
+        windows: {
+          fiveHour: '5h',
+          sevenDay: '7d',
+          sevenDayOverage: '7d dépassement',
+        },
+        outcome: {
+          reset: 'Réinitialisation appliquée ; effacé : {windows}',
+          alreadyUsed: 'Cette réinitialisation a déjà été utilisée ; actualisation pour confirmer',
+          cooldown: 'Les réinitialisations sont en refroidissement ; réessayez plus tard',
+          cooldownUntil: 'Les réinitialisations sont en refroidissement jusqu\'à {time}',
+          notLimited: 'Pas de limite atteinte, donc rien n\'a été réinitialisé et aucun crédit n\'a été utilisé',
+          ineligible: 'Ce compte ne peut pas utiliser les réinitialisations pour le moment',
+          unknown: 'Résultat non confirmé ; tout nouvel échange est bloqué pour le moment. Vérifiez à nouveau plus tard',
+          unavailable: 'Le service de réinitialisation est temporairement indisponible ; réessayez après un moment',
+          inProgress: 'Cette demande de réinitialisation est toujours en cours de traitement ; vérifiez à nouveau dans un instant',
+          retryBackoff: 'Cette demande de réinitialisation vient d\'échouer ; réessayez après un moment',
+          busy: 'Une autre réinitialisation est en cours ; réessayez plus tard',
+          notAvailable: 'Aucune réinitialisation ne peut être utilisée pour le moment ; aucun crédit n\'a été utilisé',
+          failed: 'La demande de réinitialisation a échoué',
+        },
+      },
     },
 
     // Scheduled Tests

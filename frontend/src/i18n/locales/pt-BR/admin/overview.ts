@@ -77,7 +77,8 @@ export default {
       groupPricingDesc: 'Configure o desconto em lote e a proporção de retenção',
       systemSettings: 'Configurações do sistema',
       configureSystem: 'Defina as configurações do sistema',
-      failedToLoad: 'Falha ao carregar as estatísticas do painel'
+      failedToLoad: 'Falha ao carregar as estatísticas do painel',
+      actualSpending: 'Gasto real ($)',
     },
 
     backup: {
@@ -1045,6 +1046,7 @@ export default {
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
         composite: 'Composite',
+        typesafe: 'TypeSafe / Jev',
       },
       deleteConfirm:
         "Tem certeza de que deseja excluir '{name}'? Todas as chaves de API associadas não pertencerão mais a nenhum grupo.",
@@ -1143,19 +1145,18 @@ export default {
       },
       modelAllowlist: {
         title: 'Lista de permissões de modelos',
-        hint: 'Quando ativada, modelos fora da lista de permissões são rejeitados com 404 model_not_found, e os endpoints de listagem de modelos mostram apenas os modelos permitidos. As entradas aceitam IDs de modelo exatos e curingas * no final. Observação: o Claude Code usa modelos da família haiku para títulos/resumos, e /messages/count_tokens também é controlado pela lista de permissões, portanto certifique-se de que os modelos pequenos necessários também estejam selecionados.',
+        hint: 'Quando ativada, modelos fora da lista de permissões são rejeitados com 404 model_not_found, e os endpoints de listagem de modelos mostram apenas os modelos permitidos. As entradas aceitam IDs de modelo exatos e curingas * em qualquer posição (ex.: gpt-*-codex). Observação: o Claude Code usa modelos da família haiku para títulos/resumos, e /messages/count_tokens também é controlado pela lista de permissões, portanto certifique-se de que os modelos pequenos necessários também estejam selecionados.',
         loading: 'Carregando modelos candidatos...',
         empty: 'Nenhum modelo candidato; adicione entradas personalizadas abaixo',
         selectedSummary: 'Selecionados {selected} / {total}',
         selectAll: 'Selecionar todos',
         invertSelection: 'Inverter',
         wildcardTag: 'curinga',
-        customPlaceholder: 'Entrada personalizada, ex.: claude-* ou gpt-5.5-codex',
+        customPlaceholder: 'Entrada personalizada, ex.: gpt-*-codex ou claude-*',
         addCustom: 'Adicionar',
         emptySelectionError: 'A lista de permissões de modelos está ativada; selecione ou adicione pelo menos uma entrada de modelo',
         errors: {
           empty: 'Informe uma entrada de modelo',
-          invalidWildcard: 'O curinga * só é permitido no final de uma entrada',
           duplicate: 'Esta entrada já existe'
         }
       },

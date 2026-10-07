@@ -77,7 +77,8 @@ export default {
       groupPricingDesc: 'Configurer la remise par lot et le ratio de retenue',
       systemSettings: 'Paramètres système',
       configureSystem: 'Configurer les paramètres système',
-      failedToLoad: 'Échec du chargement des statistiques du tableau de bord'
+      failedToLoad: 'Échec du chargement des statistiques du tableau de bord',
+      actualSpending: 'Dépenses réelles ($)',
     },
 
     backup: {
@@ -1045,6 +1046,7 @@ export default {
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
         composite: 'Composite',
+        typesafe: 'TypeSafe / Jev',
       },
       deleteConfirm:
         "Voulez-vous vraiment supprimer '{name}' ? Toutes les clés API associées n'appartiendront plus à aucun groupe.",
@@ -1143,19 +1145,18 @@ export default {
       },
       modelAllowlist: {
         title: 'Liste blanche des modèles',
-        hint: 'Une fois activé, les modèles hors liste blanche sont rejetés avec 404 model_not_found, et les points de terminaison de liste de modèles n\'affichent que les modèles de la liste blanche. Les entrées acceptent les ID de modèle exacts et les jokers * en fin d\'entrée. Remarque : les sondes de Claude Code avec les modèles de la famille haiku pour les titres/résumés et /messages/count_tokens sont également contrôlées par la liste blanche, assurez-vous donc de sélectionner aussi les petits modèles dont vous avez besoin.',
+        hint: 'Lorsqu\'elle est activée, les modèles hors de la liste blanche sont rejetés avec 404 model_not_found, et les points de terminaison de liste de modèles n\'affichent que les modèles de la liste blanche. Les entrées prennent en charge les ID de modèle exacts et les jokers * n\'importe où (ex. gpt-*-codex). Note : Claude Code sonde avec des modèles de la famille haiku pour les titres/résumés et /messages/count_tokens est également contrôlé par la liste blanche, assurez-vous donc de sélectionner également les petits modèles dont vous avez besoin.',
         loading: 'Chargement des modèles candidats...',
         empty: 'Aucun modèle candidat ; ajoutez des entrées personnalisées ci-dessous',
         selectedSummary: '{selected} / {total} sélectionnés',
         selectAll: 'Tout sélectionner',
         invertSelection: 'Inverser',
         wildcardTag: 'joker',
-        customPlaceholder: 'Entrée personnalisée, ex. claude-* ou gpt-5.5-codex',
+        customPlaceholder: 'Entrée personnalisée, ex. gpt-*-codex ou claude-*',
         addCustom: 'Ajouter',
         emptySelectionError: 'La liste blanche des modèles est activée ; sélectionnez ou ajoutez au moins une entrée de modèle',
         errors: {
           empty: 'Veuillez saisir une entrée de modèle',
-          invalidWildcard: 'Le joker * n\'est autorisé qu\'en fin d\'entrée',
           duplicate: 'Cette entrée existe déjà'
         }
       },

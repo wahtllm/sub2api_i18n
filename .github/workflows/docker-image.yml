@@ -62,5 +62,10 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          # 显式传入版本与提交号：.dockerignore 排除 .git，Dockerfile 内
+          # 无法从 tag 解析版本，否则二进制会嵌入过期版本号
+          build-args: |
+            VERSION=${{ steps.version.outputs.version }}
+            COMMIT=${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

@@ -77,7 +77,8 @@ export default {
       groupPricingDesc: '設定批次折扣與凍結比例',
       systemSettings: '系統設定',
       configureSystem: '進行系統設定',
-      failedToLoad: '載入儀表板統計資料失敗'
+      failedToLoad: '載入儀表板統計資料失敗',
+      actualSpending: '實際消費 ($)',
     },
 
     backup: {
@@ -1045,6 +1046,7 @@ export default {
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
         composite: 'Composite',
+        typesafe: 'TypeSafe / Jev',
       },
       deleteConfirm:
         "確定要刪除群組 '{name}' 嗎？所有關聯的 API 金鑰將不再屬於任何群組。",
@@ -1143,19 +1145,18 @@ export default {
       },
       modelAllowlist: {
         title: '模型白名單',
-        hint: '開啟後，不在白名單中的模型會被拒絕（404 model_not_found），模型列表介面也只顯示白名單內的模型。條目支援精確模型 ID 與末尾 * 萬用字元。注意：Claude Code 會用 haiku 系小模型做標題/摘要等探測，/messages/count_tokens 同樣受白名單控制，請一併勾選所需的小模型。',
+        hint: '開啟後，不在白名單中的模型會被拒絕（404 model_not_found），模型列表介面也只顯示白名單內的模型。條目支援精確模型 ID 與任意位置的 * 萬用字元（如 gpt-*-codex）。注意：Claude Code 會用 haiku 系小模型做標題/摘要等探測，/messages/count_tokens 同樣受白名單控制，請一併勾選所需的小模型。',
         loading: '正在載入候選模型...',
         empty: '暫無候選模型，可在下方手動新增條目',
         selectedSummary: '已選 {selected} / {total}',
         selectAll: '全選',
         invertSelection: '反選',
         wildcardTag: '萬用',
-        customPlaceholder: '自訂條目，如 claude-* 或 gpt-5.5-codex',
+        customPlaceholder: '自訂條目，如 gpt-*-codex 或 claude-*',
         addCustom: '新增',
         emptySelectionError: '模型白名單已開啟，請至少選擇或新增一個模型條目',
         errors: {
           empty: '請輸入模型條目',
-          invalidWildcard: '萬用字元 * 只能出現在條目末尾',
           duplicate: '該條目已存在'
         }
       },

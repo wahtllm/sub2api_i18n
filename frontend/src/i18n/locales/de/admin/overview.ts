@@ -77,7 +77,8 @@ export default {
       groupPricingDesc: 'Stapelrabatt und Sperrverhältnis konfigurieren',
       systemSettings: 'Systemeinstellungen',
       configureSystem: 'Systemeinstellungen konfigurieren',
-      failedToLoad: 'Dashboard-Statistiken konnten nicht geladen werden'
+      failedToLoad: 'Dashboard-Statistiken konnten nicht geladen werden',
+      actualSpending: 'Tatsächliche Ausgaben ($)',
     },
 
     backup: {
@@ -1045,6 +1046,7 @@ export default {
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
         composite: 'Composite',
+        typesafe: 'TypeSafe / Jev',
       },
       deleteConfirm:
         "Möchtest du '{name}' wirklich löschen? Alle zugehörigen API-Keys gehören dann keiner Gruppe mehr.",
@@ -1143,19 +1145,18 @@ export default {
       },
       modelAllowlist: {
         title: 'Modell-Allowlist',
-        hint: 'Wenn aktiviert, werden Modelle außerhalb der Allowlist mit 404 model_not_found abgelehnt, und Modell-Listen-Endpunkte zeigen nur Modelle aus der Allowlist. Einträge unterstützen exakte Modell-IDs und abschließende *-Wildcards. Hinweis: Claude Code nutzt haiku-Familien-Modelle für Titel-/Zusammenfassungs-Probes, und /messages/count_tokens unterliegt ebenfalls der Allowlist – stelle daher sicher, dass auch die benötigten kleinen Modelle ausgewählt sind.',
+        hint: 'Wenn aktiviert, werden Modelle außerhalb der Whitelist mit 404 model_not_found abgelehnt, und Modell-Listing-Endpunkte zeigen nur Modelle aus der Whitelist. Einträge unterstützen exakte Modell-IDs und *-Wildcards an beliebiger Stelle (z. B. gpt-*-codex). Hinweis: Claude Code testet mit haiku-Familie-Modellen für Titel/Zusammenfassungen, und /messages/count_tokens wird ebenfalls durch die Whitelist kontrolliert. Stelle sicher, dass auch die benötigten kleinen Modelle ausgewählt sind.',
         loading: 'Kandidatenmodelle werden geladen...',
         empty: 'Keine Kandidatenmodelle; füge unten eigene Einträge hinzu',
         selectedSummary: '{selected} / {total} ausgewählt',
         selectAll: 'Alle auswählen',
         invertSelection: 'Umkehren',
         wildcardTag: 'Wildcard',
-        customPlaceholder: 'Eigener Eintrag, z. B. claude-* oder gpt-5.5-codex',
+        customPlaceholder: 'Benutzerdefinierter Eintrag, z. B. gpt-*-codex oder claude-*',
         addCustom: 'Hinzufügen',
         emptySelectionError: 'Die Modell-Allowlist ist aktiviert; wähle mindestens einen Modelleintrag aus oder füge einen hinzu',
         errors: {
           empty: 'Bitte gib einen Modelleintrag ein',
-          invalidWildcard: 'Wildcard * ist nur am Ende eines Eintrags erlaubt',
           duplicate: 'Dieser Eintrag existiert bereits'
         }
       },

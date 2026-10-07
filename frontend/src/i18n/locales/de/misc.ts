@@ -368,6 +368,8 @@ export default {
       orderType: 'Bestelltyp',
       actions: 'Aktionen',
       requestRefund: 'Rückerstattung anfordern',
+      bonusAmount: 'Bonus-Guthaben',
+      bonusIncluded: 'inkl. Bonus {amount}',
     },
     result: {
       success: 'Zahlung erfolgreich',
@@ -618,6 +620,13 @@ export default {
         expired: 'Abgelaufen',
         revoked: 'Widerrufen',
       },
+    },
+    rechargeBonus: {
+      creditedShort: 'Erhältst {amount}',
+      payShort: 'Zahlst {amount}',
+      amountLabel: 'Bonus-Guthaben',
+      amountLabelWithPercent: 'Bonus-Guthaben (+{percent}%)',
+      discountLabelWithPercent: 'Rabatt ({percent}% OFF)',
     },
   },
 

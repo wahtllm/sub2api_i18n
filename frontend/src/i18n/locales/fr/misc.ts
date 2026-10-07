@@ -368,6 +368,8 @@ export default {
       orderType: 'Type de commande',
       actions: 'Actions',
       requestRefund: 'Demander un remboursement',
+      bonusAmount: 'Bonus',
+      bonusIncluded: 'incl. bonus {amount}',
     },
     result: {
       success: 'Paiement réussi',
@@ -618,6 +620,13 @@ export default {
         expired: 'Expiré',
         revoked: 'Révoqué',
       },
+    },
+    rechargeBonus: {
+      creditedShort: 'Reçoit {amount}',
+      payShort: 'Paie {amount}',
+      amountLabel: 'Montant bonus',
+      amountLabelWithPercent: 'Montant bonus (+{percent}%)',
+      discountLabelWithPercent: 'Réduction ({percent}% OFF)',
     },
   },
 

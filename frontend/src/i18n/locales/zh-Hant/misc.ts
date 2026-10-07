@@ -392,6 +392,8 @@ export default {
       orderType: '訂單類型',
       actions: '操作',
       requestRefund: '申請退款',
+      bonusAmount: '贈送額度',
+      bonusIncluded: '含贈送 {amount}',
     },
     result: {
       success: '支付成功',
@@ -642,6 +644,13 @@ export default {
         expired: '已過期',
         revoked: '已撤銷',
       },
+    },
+    rechargeBonus: {
+      creditedShort: '到帳 {amount}',
+      payShort: '實付 {amount}',
+      amountLabel: '贈送額度',
+      amountLabelWithPercent: '贈送額度 (+{percent}%)',
+      discountLabelWithPercent: '優惠 ({percent}% OFF)',
     },
   },
 

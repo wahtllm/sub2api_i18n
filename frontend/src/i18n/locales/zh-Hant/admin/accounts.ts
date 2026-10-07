@@ -107,6 +107,7 @@ export default {
         deepseek: 'DeepSeek',
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
+        typesafe: 'TypeSafe / Jev',
       },
       cnProviders: {
         accountMode: {
@@ -835,7 +836,7 @@ export default {
       customErrorCodes: '自訂錯誤碼',
       customErrorCodesHint: '僅對選取的錯誤碼停止調度',
       customErrorCodesWarning:
-        '僅選取的錯誤碼會停止調度，其他錯誤將回傳 500。',
+        '自訂錯誤碼僅用於篩選常規的帳號錯誤處理（如停止調度、限流標記），不決定請求是否重試或切換帳號。未選取的錯誤仍可能觸發重試或切換帳號，最終回傳給使用者的狀態碼取決於閘道路徑和錯誤透傳規則，並非統一回傳 500。清單為空時不做篩選。',
       customErrorCodes429Warning:
         '429 已有內建的限流處理機制。新增到自訂錯誤碼後，將直接停止調度而非臨時限流。確定要新增嗎？',
       customErrorCodes529Warning:
@@ -1666,6 +1667,53 @@ export default {
       linkCopied: '連結已複製',
       needsReauth: '需要重新授權',
       rateLimited: '限流中',
-      usageError: '取得失敗'
+      usageError: '取得失敗',
+      priorityQuick: {
+        raise: '提高優先順序（數值 -1）',
+        lower: '降低優先順序（數值 +1）',
+        editHint: '點擊直接輸入；數值越小越優先',
+        failed: '更新優先順序失敗',
+      },
+      modelMappingConflict: '該模型已設定映射 {from} → {to}，請在模型映射中修改或刪除後再新增白名單模型',
+      claudeResetCredits: {
+        count: '次數',
+        countTooltipLoad: '點擊查詢 Claude 剩餘重設次數（唯讀，不會消耗）',
+        countTooltipRefresh: '點擊重新整理 Claude 剩餘重設次數（唯讀，不會消耗）',
+        fetched: '查詢時間：{time}',
+        error: '無法查詢重設次數',
+        ineligible: '此帳號目前無法使用重設',
+        cooldown: '冷卻至 {time}',
+        expiresAt: '到期 {time}',
+        expiresAtFull: '重設次數到期時間：{time}',
+        clears: '可清除時間窗：{windows}',
+        notUsableNow: '暫不可用',
+        requiresLimit: '需達到限額後才能使用',
+        reset: '重設',
+        resetTooltipNeedQuery: '請先點「次數」查詢；查詢到可用的重設後才能使用',
+        resetTooltipNone: '目前沒有可立即使用的重設',
+        resetTooltipReady: '消耗 1 次重設，清除限額時間窗（需確認）',
+        confirmTitle: '確認使用 Claude 重設',
+        confirmMessage: '將消耗 1 次重設次數，立即恢復 {windows} 時間窗，剩餘 {count} 次。此操作無法復原，確定要繼續嗎？',
+        windows: {
+          fiveHour: '5h',
+          sevenDay: '7d',
+          sevenDayOverage: '7d 超額',
+        },
+        outcome: {
+          reset: '重設成功，已清除：{windows}',
+          alreadyUsed: '該重設已被使用，正在重新整理確認',
+          cooldown: '重設處於冷卻中，請稍後再試',
+          cooldownUntil: '重設處於冷卻中，冷卻至 {time}',
+          notLimited: '目前未達到限額，無需重設，未消耗次數',
+          ineligible: '此帳號目前無法使用重設',
+          unknown: '結果未確認，已阻止再次兌換，請稍後查詢',
+          unavailable: '重設服務暫時無法使用，未確認消耗，請稍後再試',
+          inProgress: '該重設請求仍在處理中，請稍後查詢結果',
+          retryBackoff: '該重設請求剛剛失敗，請稍後再試',
+          busy: '另一個重設正在進行中，請稍後再試',
+          notAvailable: '目前沒有可立即使用的重設，未消耗次數',
+          failed: '重設請求失敗',
+        },
+      },
     },
 }

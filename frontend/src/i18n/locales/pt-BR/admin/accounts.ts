@@ -109,6 +109,7 @@ export default {
         deepseek: 'DeepSeek',
         minimax: 'MiniMax',
         opencode_go: 'OpenCode',
+        typesafe: 'TypeSafe / Jev',
       },
       cnProviders: {
         accountMode: {
@@ -842,7 +843,7 @@ export default {
       customErrorCodes: 'Códigos de erro personalizados',
       customErrorCodesHint: 'Parar o agendamento apenas para os códigos de erro selecionados',
       customErrorCodesWarning:
-        'Apenas os códigos de erro selecionados pararão o agendamento. Outros erros retornarão 500.',
+        'Os códigos de erro personalizados apenas filtram o tratamento normal de erros de conta (como interromper o agendamento ou marcar limites de taxa). Eles não determinam se uma requisição será repetida ou trocada para outra conta. Erros não selecionados ainda podem acionar uma repetição ou uma troca de conta, e o status retornado ao cliente depende do caminho do gateway e das regras de repasse de erros; nem sempre é 500. Uma lista vazia não aplica nenhum filtro.',
       customErrorCodes429Warning:
         'O 429 já tem tratamento integrado de limite de taxa. Adicioná-lo aos códigos de erro personalizados desativará a conta em vez de limitar a taxa temporariamente. Tem certeza?',
       customErrorCodes529Warning:
@@ -1692,7 +1693,54 @@ export default {
       linkCopied: 'Link copiado',
       needsReauth: 'Reautorização necessária',
       rateLimited: 'Limite de taxa',
-      usageError: 'Erro de busca'
+      usageError: 'Erro de busca',
+      priorityQuick: {
+        raise: 'Aumentar prioridade (valor -1)',
+        lower: 'Reduzir prioridade (valor +1)',
+        editHint: 'Clique para digitar um valor; valores menores são usados primeiro',
+        failed: 'Falha ao atualizar a prioridade',
+      },
+      modelMappingConflict: 'Já existe um mapeamento para {from} → {to}. Modifique-o ou remova-o em Mapeamento de modelos antes de adicionar este modelo à lista de permissões',
+      claudeResetCredits: {
+        count: 'Redefinições',
+        countTooltipLoad: 'Consultar as redefinições restantes do Claude (somente leitura, nunca consome uma)',
+        countTooltipRefresh: 'Atualizar as redefinições restantes do Claude (somente leitura, nunca consome uma)',
+        fetched: 'Consultado em {time}',
+        error: 'Não foi possível consultar os créditos de redefinição',
+        ineligible: 'Esta conta não pode usar redefinições no momento',
+        cooldown: 'Em cooldown até {time}',
+        expiresAt: 'Expira em {time}',
+        expiresAtFull: 'O crédito de redefinição expira em: {time}',
+        clears: 'Limpa as janelas: {windows}',
+        notUsableNow: 'Não pode ser usado agora',
+        requiresLimit: 'Só pode ser usado após atingir um limite',
+        reset: 'Redefinir',
+        resetTooltipNeedQuery: 'Consulte a contagem primeiro; a redefinição estará disponível quando um crédito utilizável for encontrado',
+        resetTooltipNone: 'Nenhuma redefinição pode ser usada agora',
+        resetTooltipReady: 'Consome 1 redefinição para limpar as janelas de limite (pede confirmação)',
+        confirmTitle: 'Confirmar redefinição do Claude',
+        confirmMessage: 'Isso consumirá 1 crédito de redefinição para restaurar imediatamente as janelas {windows} ({count} restantes). Esta ação não pode ser desfeita. Continuar?',
+        windows: {
+          fiveHour: '5h',
+          sevenDay: '7d',
+          sevenDayOverage: 'Excedente de 7d',
+        },
+        outcome: {
+          reset: 'Redefinição aplicada; janelas limpas: {windows}',
+          alreadyUsed: 'Esta redefinição já foi usada; atualizando para confirmar',
+          cooldown: 'As redefinições estão em cooldown; tente novamente mais tarde',
+          cooldownUntil: 'As redefinições estão em cooldown até {time}',
+          notLimited: 'Nenhum limite foi atingido, portanto nada foi redefinido e nenhum crédito foi usado',
+          ineligible: 'Esta conta não pode usar redefinições no momento',
+          unknown: 'Resultado não confirmado; novos resgates estão bloqueados por enquanto. Consulte novamente mais tarde',
+          unavailable: 'O serviço de redefinição está temporariamente indisponível; tente novamente mais tarde',
+          inProgress: 'Esta solicitação de redefinição ainda está sendo processada; consulte novamente em instantes',
+          retryBackoff: 'Esta solicitação de redefinição acabou de falhar; tente novamente em instantes',
+          busy: 'Outra redefinição está em andamento; tente novamente mais tarde',
+          notAvailable: 'Nenhuma redefinição pode ser usada agora; nenhum crédito foi usado',
+          failed: 'Falha na solicitação de redefinição',
+        },
+      },
     },
 
     // Scheduled Tests
