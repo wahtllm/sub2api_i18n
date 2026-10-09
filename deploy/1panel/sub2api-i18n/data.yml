@@ -1,24 +1,24 @@
 name: Sub2API 多语言版
 tags:
   - AI
-title: AI API 网关平台（9 语言版），支持订阅配额分发与管理
-description: AI API 网关平台，内置 9 种界面语言（英/简中/繁中/日/德/韩/西/法/巴葡）
+title: AI API 网关平台（15 语言版），支持订阅配额分发与管理
+description: AI API 网关平台，内置 15 种界面语言（英/简中/繁中/日/德/韩/西/法/意/荷/波/土/印尼/越南/巴葡）
 additionalProperties:
   key: sub2api-i18n
   name: Sub2API 多语言版
   tags:
     - AI
-  shortDescZh: AI API 网关平台，内置 9 种界面语言（含繁中/日语/德语/韩语/西语/法语/巴葡）
-  shortDescEn: AI API gateway platform with 9 built-in UI languages (EN/ZH/ZH-Hant/JA/DE/KO/ES/FR/PT-BR)
+  shortDescZh: AI API 网关平台，内置 15 种界面语言（含繁中/日/德/韩/西/法/意/荷/波/土/印尼/越南/巴葡）
+  shortDescEn: AI API gateway platform with 15 built-in UI languages (EN/ZH/ZH-Hant/JA/DE/KO/ES/FR/IT/NL/PL/TR/ID/VI/PT-BR)
   description:
-    en: AI API gateway platform for subscription quota distribution and management, with 9 built-in UI languages (English, Simplified Chinese, Traditional Chinese, Japanese, German, Korean, Spanish, French, Brazilian Portuguese)
-    es-es: Plataforma de puerta de enlace de IA para distribuir y gestionar cuotas de suscripción, con 9 idiomas de interfaz integrados
-    ja: サブスクリプション枠の配布と管理に対応する AI API ゲートウェイプラットフォーム。9 言語の UI を内蔵
-    ko: 구독 할당량 배포 및 관리를 위한 AI API 게이트웨이 플랫폼, 9개 UI 언어 내장
-    pt-br: Plataforma de gateway de API de IA para distribuir e gerenciar cotas de assinatura, com 9 idiomas de interface integrados
-    ru: Платформа AI API-шлюза для распределения и управления квотами подписок со встроенной поддержкой 9 языков интерфейса
-    zh-Hant: AI API 閘道平台，支援訂閱額度分發與管理，內建 9 種介面語言
-    zh: AI API 网关平台，支持订阅配额分发与管理，内置 9 种界面语言（英/简中/繁中/日/德/韩/西/法/巴葡）
+    en: AI API gateway platform for subscription quota distribution and management, with 15 built-in UI languages (English, Simplified/Traditional Chinese, Japanese, German, Korean, Spanish, French, Italian, Dutch, Polish, Turkish, Indonesian, Vietnamese, Brazilian Portuguese)
+    es-es: Plataforma de puerta de enlace de IA para distribuir y gestionar cuotas de suscripción, con 15 idiomas de interfaz integrados
+    ja: サブスクリプション枠の配布と管理に対応する AI API ゲートウェイプラットフォーム。15 言語の UI を内蔵
+    ko: 구독 할당량 배포 및 관리를 위한 AI API 게이트웨이 플랫폼, 15개 UI 언어 내장
+    pt-br: Plataforma de gateway de API de IA para distribuir e gerenciar cotas de assinatura, com 15 idiomas de interface integrados
+    ru: Платформа AI API-шлюза для распределения и управления квотами подписок со встроенной поддержкой 15 языков интерфейса
+    zh-Hant: AI API 閘道平台，支援訂閱額度分發與管理，內建 15 種介面語言
+    zh: AI API 网关平台，支持订阅配额分发与管理，内置 15 种界面语言（英/简中/繁中/日/德/韩/西/法/意/荷/波/土/印尼/越南/巴葡）
   type: website
   crossVersionUpdate: true
   limit: 0

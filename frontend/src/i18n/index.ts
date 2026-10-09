@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n'
 
-type LocaleCode = 'en' | 'zh' | 'zh-Hant' | 'ja' | 'de' | 'ko' | 'es' | 'fr' | 'pt-BR'
+type LocaleCode = 'en' | 'zh' | 'zh-Hant' | 'ja' | 'de' | 'ko' | 'es' | 'fr' | 'it' | 'nl' | 'pl' | 'tr' | 'id' | 'vi' | 'pt-BR'
 
 // 用户可选择的语言偏好：具体语言，或 "system"（每次加载按浏览器语言解析）
 type LocalePreference = LocaleCode | 'system'
@@ -11,7 +11,7 @@ const LOCALE_KEY = 'sub2api_locale'
 const SYSTEM_LOCALE = 'system'
 const DEFAULT_LOCALE: LocaleCode = 'en'
 
-const LOCALE_CODES: readonly LocaleCode[] = ['en', 'zh', 'zh-Hant', 'ja', 'de', 'ko', 'es', 'fr', 'pt-BR']
+const LOCALE_CODES: readonly LocaleCode[] = ['en', 'zh', 'zh-Hant', 'ja', 'de', 'ko', 'es', 'fr', 'it', 'nl', 'pl', 'tr', 'id', 'vi', 'pt-BR']
 
 const localeLoaders: Record<LocaleCode, () => Promise<{ default: LocaleMessages }>> = {
   en: () => import('./locales/en'),
@@ -22,6 +22,12 @@ const localeLoaders: Record<LocaleCode, () => Promise<{ default: LocaleMessages 
   ko: () => import('./locales/ko'),
   es: () => import('./locales/es'),
   fr: () => import('./locales/fr'),
+  it: () => import('./locales/it'),
+  nl: () => import('./locales/nl'),
+  pl: () => import('./locales/pl'),
+  tr: () => import('./locales/tr'),
+  id: () => import('./locales/id'),
+  vi: () => import('./locales/vi'),
   'pt-BR': () => import('./locales/pt-BR')
 }
 
@@ -46,6 +52,12 @@ const browserLocaleMatchers: ReadonlyArray<readonly [prefix: string, locale: Loc
   ['ko', 'ko'],
   ['es', 'es'],
   ['fr', 'fr'],
+  ['it', 'it'],
+  ['nl', 'nl'],
+  ['pl', 'pl'],
+  ['tr', 'tr'],
+  ['id', 'id'],
+  ['vi', 'vi'],
   ['pt', 'pt-BR']
 ]
 
@@ -140,11 +152,17 @@ export function getLocalePreference(): LocalePreference {
 // 语言菜单：System 固定第一，其余按本地名 Unicode 序排列
 export const availableLocales = [
   { code: 'system', name: 'System', flag: '🌐' },
+  { code: 'id', name: 'Bahasa Indonesia', flag: '🇮🇩' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
+  { code: 'pl', name: 'Polski', flag: '🇵🇱' },
   { code: 'pt-BR', name: 'Português (Brasil)', flag: '🇧🇷' },
+  { code: 'vi', name: 'Tiếng Việt', flag: '🇻🇳' },
+  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
   { code: 'ja', name: '日本語', flag: '🇯🇵' },
   { code: 'zh', name: '简体中文', flag: '🇨🇳' },
   { code: 'zh-Hant', name: '繁體中文', flag: '🇹🇼' },

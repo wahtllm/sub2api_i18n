@@ -8,6 +8,12 @@ import de from '../locales/de'
 import ko from '../locales/ko'
 import es from '../locales/es'
 import fr from '../locales/fr'
+import itLocale from '../locales/it'
+import nl from '../locales/nl'
+import pl from '../locales/pl'
+import tr from '../locales/tr'
+import idLocale from '../locales/id'
+import vi from '../locales/vi'
 import ptBR from '../locales/pt-BR'
 
 const allLocales: Record<string, Record<string, unknown>> = {
@@ -19,6 +25,12 @@ const allLocales: Record<string, Record<string, unknown>> = {
   ko,
   es,
   fr,
+  it: itLocale,
+  nl,
+  pl,
+  tr,
+  id: idLocale,
+  vi,
   'pt-BR': ptBR
 }
 

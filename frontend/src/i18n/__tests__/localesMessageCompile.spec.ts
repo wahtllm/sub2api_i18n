@@ -9,6 +9,12 @@ import de from '../locales/de'
 import ko from '../locales/ko'
 import es from '../locales/es'
 import fr from '../locales/fr'
+import itLocale from '../locales/it'
+import nl from '../locales/nl'
+import pl from '../locales/pl'
+import tr from '../locales/tr'
+import idLocale from '../locales/id'
+import vi from '../locales/vi'
 import ptBR from '../locales/pt-BR'
 
 // vue-i18n 在运行时才编译消息：文案里未转义的花括号（如内嵌 JSON 示例
@@ -46,6 +52,12 @@ describe('locale messages compile', () => {
     ['ko', ko],
     ['es', es],
     ['fr', fr],
+    ['it', itLocale],
+    ['nl', nl],
+    ['pl', pl],
+    ['tr', tr],
+    ['id', idLocale],
+    ['vi', vi],
     ['pt-BR', ptBR]
   ] as const)('%s messages all compile without placeholder errors', (locale, messages) => {
     const errors: string[] = []

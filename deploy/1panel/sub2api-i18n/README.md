@@ -2,7 +2,7 @@
 
 [Wei-Shaw/sub2api](https://github.com/Wei-Shaw/sub2api) 的多语言 fork，镜像 `ghcr.io/wahtllm/sub2api_i18n`。
 
-在官方功能（Claude / OpenAI / Gemini / Grok 订阅统一接入、配额分发、拼车共享）基础上，新增 **9 种界面语言**（语言菜单含 System 跟随系统选项）：
+在官方功能（Claude / OpenAI / Gemini / Grok 订阅统一接入、配额分发、拼车共享）基础上，新增 **15 种界面语言**（语言菜单含 System 跟随系统选项）：
 
 - English
 - 简体中文
@@ -12,6 +12,12 @@
 - 한국어
 - Español
 - Français
+- Italiano
+- Nederlands
+- Polski
+- Türkçe
+- Bahasa Indonesia
+- Tiếng Việt
 - Português (Brasil)
 
 首次访问按浏览器语言自动探测（繁体浏览器自动匹配繁體中文），也可在界面右上角语言菜单中随时切换。
